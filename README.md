@@ -1,4 +1,4 @@
-# Microsoft Azure SIEM Honeypot Lab
+# Microsoft Azure Honeypot Attacker Heatmap Lab
 
 <p align="center">
 <img src="/images/hero.png" alt="hero" width=600/>
@@ -16,6 +16,8 @@ The purpose of this lab is to create a vulnerable honeypot in Microsoft Azure to
 </p>
 
 I will create a Windows 10 virtual machine and intentionally leave it vulnerable by disabling the firewall and creating a NSG (Network Security Group) rule that allows ANY connection type to the virtual machine and giving it priority over other rules.
+
+<hr>
 
 Step 1
 
@@ -134,10 +136,32 @@ Go to `Content hub` to install windows security events, add connector, and creat
 
 <hr>
 
+Step 11
+
+Create new watchlist item using the geo location file
+
 
 <p align="center">
-<img src="/images/create_machine.png" alt="create virtual machine" width=600/>
+<img src="/images/watchlist.png" alt="watchlist" width=600/>
 </p>
+
+
+<hr>
+
+Step 12
+
+Run the following KQL query to generate all of the IP addresses of attackers on the VM and utilize the geo locations from the uploaded geo file
+
+```powershell
+let geoWatchlist = _GetWatchlist('geoip');
+let WindowsEvents = SecurityEvent;
+WindowsEvents | where EventID == 4625
+| order by TimeGenerated desc 
+| evaluate ipv4_lookup(geoWatchlist, IpAddress, network)
+| summarize FailureCount = count() by IpAddress, latitude, longitude, cityname, countryname
+| project AttackerIP = IpAddress, latitude, longitude, city = cityname, country = countryname, friendly_location = strcat(cityname, " (", countryname, ")"), FailureCount;
+```
+
 
 
 <p align="center">
