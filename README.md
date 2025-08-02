@@ -14,7 +14,15 @@ The purpose of this lab is to create a vulnerable honeypot in Microsoft Azure to
 
 ## Procedure
 
-I will create a Windows 10 virtual machine and intentionally leave it vulnerable by disabling the firewall and creating a NSG (Network Security Group) rule that allows ANY connection type to the virtual machine and giving it priority over other rules.
+I will create a Windows 10 virtual machine and intentionally leave it vulnerable by disabling the firewall and creating a NSG (Network Security Group) rule that allows ANY connection type to the virtual machine and giving it priority over other rules. This will leave the machine vulnerable to attacks from around the world. I will then ping the VM from my ownpersonal device to ensure connectivity because, if I can reach the VM from my person device, then others can as well.
+
+Next, I will intentionally attempt to login to the VM using Remote Desktop Protocol (RDP) in order to generate security logs to view for testing purposes. After verifying that the logs are present in the security logs, I will create a log analytics workspace within Azure to later link to Microsoft Sentinel. This will connect the VM to the log analytics workspace so that all logs from the VM can be sent from the VM to the log analytics workspace, then to Sentinel so that better analysis can be done such as KQL queries.
+
+Then, I will download a created geo location list that associates different IP Addresses to their respective locations (City Name, Country Name). After downloading the geo location file, I will create a new watchlist item and upload the file so that it can later be used in KQL queries for data analysis.
+
+<a href="https://raw.githubusercontent.com/joshmadakor1/lognpacific-public/refs/heads/main/misc/geoip-summarized.csv">View The File Here</a>
+
+Finally, I will leave the vulnerable device online for **24 HOURS** in order to give time for a good data set to producegood visual results for the heat map. 
 
 <hr>
 
