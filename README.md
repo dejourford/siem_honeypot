@@ -22,13 +22,14 @@ Then, I will download a created geo location list that associates different IP A
 
 <a href="https://raw.githubusercontent.com/joshmadakor1/lognpacific-public/refs/heads/main/misc/geoip-summarized.csv">View The File Here</a>
 
-Finally, I will leave the vulnerable device online for **24 HOURS** in order to give time for a good data set to produce good visual results for the heat map. 
+Finally, I will leave the vulnerable device online for **24 HOURS** in order to give time for a good data set to produce good visual results for the heat map. Then, I will list the related MITRE ATT&CK tactics and a potential remediation plan. 
 
 <hr>
 
-`Step 1`
+## Step 1) Create a virtual machine
 
-Create a virtual machine
+This step is the creation of a virtual machine in Azure that is running Windows 10.
+
 
 <p align="center">
 <img src="/images/create_machine.png" alt="create virtual machine" width=600/>
@@ -36,9 +37,9 @@ Create a virtual machine
 
 <hr>
 
-`Step 2`
+## Step 2) Remove default Remote Desktop Rule from NSG (Network Security Group)
 
-Remove default Remote Desktop Rule from NSG (Network Security Group)
+This step is the removal of the default RDP rule that is created within the NSG upon virtual machine creation.
 
 
 <p align="center">
@@ -47,9 +48,9 @@ Remove default Remote Desktop Rule from NSG (Network Security Group)
 
 <hr>
 
-`Step 3`
+## Step 3) Create new global rule that allows any type of connection to the virtual machine
 
-Create new global rule that allows any type of connection the virtual machine
+This step is creating a global rule that allows any type of connection to the virtual machine and giving it higher priority (lower number value) than the other rules.
 
 <p align="center">
 <img src="/images/create_global_rule.png" alt="create global rule" width=600/>
@@ -57,9 +58,9 @@ Create new global rule that allows any type of connection the virtual machine
 
 <hr>
 
-`Step 4`
+## Step 4) Disable Windows Firewall
 
-Disable windows firewall
+The windows firewall is disabled in this step to ensure communication betweeen devices and the virtual machine.
 
 <p align="center">
 <img src="/images/disable_firewall.png" alt="disable firewall" width=600/>
@@ -67,9 +68,9 @@ Disable windows firewall
 
 <hr>
 
-`Step 5` 
+## Step 5) Ping The Virtual Machine 
 
-Ping the virtual machine from another device to test connectivity. If you can connect to the device, then potential attackers can as well.
+In this step, I ping the virtual machine from another device to test connectivity. If I can connect to the device, then potential attackers can as well, which is the goal.
 
 <p align="center">
 <img src="/images/ping_vm.png" alt="ping" width=600/>
@@ -77,9 +78,9 @@ Ping the virtual machine from another device to test connectivity. If you can co
 
 <hr>
 
-`Step 6`
+## Step 6) Attempt A Login
 
-Intentionally attempt to login using incorrect credentials to generate security logs
+In this step, I intentionally attempt to login using incorrect credentials to generate security logs so that I can make sure there are no issues.
 
 <p align="center">
 <img src="/images/attempt.png" alt="login attempt" width=600/>
@@ -92,9 +93,9 @@ Intentionally attempt to login using incorrect credentials to generate security 
 
 <hr>
 
-`Step 7`
+## Step 7) Check For Login Attempts
 
-Check for the login attempts from the previous step by viewing the system's security logs
+In this step, I check for the login attempts from the previous step by viewing the system's security logs. I can see the two attempts that I made earlier are present, which means everything is working fine thus far.
 
 <p align="center">
 <img src="/images/event_viewer.png" alt="event viewer" width=600/>
@@ -102,9 +103,9 @@ Check for the login attempts from the previous step by viewing the system's secu
 
 <hr>
 
-`Step 8`
+## Step 8) Create a Log Analytics Workspace
 
-Create a log analytics workspace in Azure to link Microsoft Sentinel and Windows Security Events
+In this step, I create a log analytics workspace in Azure to link Microsoft Sentinel, Microsoft Defender, and Windows Security Events
 
 <p align="center">
 <img src="/images/create_law.png" alt="create log analytics workspace" width=600/>
@@ -112,9 +113,9 @@ Create a log analytics workspace in Azure to link Microsoft Sentinel and Windows
 
 <hr>
 
-`Step 9`
+## Step 9) Link Sentinel
 
-Link Sentinel to the LAW (log analytics workspace) created from the previous step
+In this step, I link Sentinel to the LAW (log analytics workspace) created from the previous step
 
 
 <p align="center">
@@ -123,9 +124,9 @@ Link Sentinel to the LAW (log analytics workspace) created from the previous ste
 
 <hr>
 
-`Step 10`
+## Step 10) Create a Data Connection
 
-Go to `Content hub` to install windows security events, add connector, and create a data connection rule so that logs from the virtual machine can be sent to Sentinel
+In this step, I go to `Content hub` to install windows security events, add connector, and create a data connection rule so that logs from the virtual machine can be sent to Sentinel
 
 <p align="center">
 <img src="/images/install_windows_security_events.png" alt="windows security events" width=600/>
@@ -143,9 +144,9 @@ Go to `Content hub` to install windows security events, add connector, and creat
 
 <hr>
 
-`Step 11`
+## Step 11) Create a Watchlist
 
-Create new watchlist item using the geo location file
+In this step, I create a new watchlist item using the geo location file that I previously downloaded
 
 
 <p align="center">
@@ -155,9 +156,9 @@ Create new watchlist item using the geo location file
 
 <hr>
 
-`Step 12`
+## Step 12) Run KQL Query
 
-Run the following KQL query to generate all of the IP addresses of attackers on the VM and utilize the geo locations from the uploaded geo file
+In this step, I run the following KQL query to generate all of the IP addresses of attackers on the VM and utilize the geo locations from the uploaded geo file:
 
 ```powershell
 let geoWatchlist = _GetWatchlist('geoip');
@@ -212,4 +213,8 @@ WindowsEvents | where EventID == 4625
 ## Discussion
 
  
+## MITRE ATT&CK Tactics Used
 
+`Test`
+
+## Mitigation Plan
