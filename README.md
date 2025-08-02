@@ -4,6 +4,24 @@
 <img src="/images/hero.png" alt="hero" width=900/>
 </p>
 
+## Technology Utilized
+
+    - Microsoft Azure Virtual Machine (Windows 10)
+    
+    - Microsoft Defender
+    
+    - Microsoft Sentinel
+
+    - Remote Desktop Protocol (RDP)
+     
+    - KQL (Kusto Query Language)
+
+    - MITRE ATT&CK Framework
+
+    - Network Security Group (NSG)
+
+<hr>
+
 ## Purpose
 
 The purpose of this lab is to create a vulnerable honeypot in Microsoft Azure to demonstrate attacker activity and create a visual representation of their location on a map.
