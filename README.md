@@ -9,7 +9,7 @@
 The purpose of this lab is to create a vulnerable honeypot in Microsoft Azure to demonstrate attacker activity and create a visual representation of their location on a map.
 
 <p align="center">
-<img src="/images/lab_architecture.png" alt="lab architecture" width=600/>
+<img src="/images/lab_architecture.png" alt="lab architecture" width=900/>
 </p>
 
 ## Procedure
