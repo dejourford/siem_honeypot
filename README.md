@@ -22,11 +22,11 @@ Then, I will download a created geo location list that associates different IP A
 
 <a href="https://raw.githubusercontent.com/joshmadakor1/lognpacific-public/refs/heads/main/misc/geoip-summarized.csv">View The File Here</a>
 
-Finally, I will leave the vulnerable device online for **24 HOURS** in order to give time for a good data set to producegood visual results for the heat map. 
+Finally, I will leave the vulnerable device online for **24 HOURS** in order to give time for a good data set to produce good visual results for the heat map. 
 
 <hr>
 
-Step 1
+`**Step 1**`
 
 Create a virtual machine
 
@@ -36,7 +36,7 @@ Create a virtual machine
 
 <hr>
 
-Step 2
+`**Step 2**`
 
 Remove default Remote Desktop Rule from NSG (Network Security Group)
 
@@ -47,7 +47,7 @@ Remove default Remote Desktop Rule from NSG (Network Security Group)
 
 <hr>
 
-Step 3
+`**Step 3**`
 
 Create new global rule that allows any type of connection the virtual machine
 
@@ -57,7 +57,7 @@ Create new global rule that allows any type of connection the virtual machine
 
 <hr>
 
-Step 4
+`**Step 4**`
 
 Disable windows firewall
 
@@ -67,7 +67,7 @@ Disable windows firewall
 
 <hr>
 
-Step 5 
+`**Step 5**` 
 
 Ping the virtual machine from another device to test connectivity. If you can connect to the device, then potential attackers can as well.
 
@@ -77,7 +77,7 @@ Ping the virtual machine from another device to test connectivity. If you can co
 
 <hr>
 
-Step 6
+`**Step 6**`
 
 Intentionally attempt to login using incorrect credentials to generate security logs
 
@@ -92,7 +92,7 @@ Intentionally attempt to login using incorrect credentials to generate security 
 
 <hr>
 
-Step 7
+`**Step 7**`
 
 Check for the login attempts from the previous step by viewing the system's security logs
 
@@ -102,7 +102,7 @@ Check for the login attempts from the previous step by viewing the system's secu
 
 <hr>
 
-Step 8
+`**Step 8**`
 
 Create a log analytics workspace in Azure to link Microsoft Sentinel and Windows Security Events
 
@@ -112,7 +112,7 @@ Create a log analytics workspace in Azure to link Microsoft Sentinel and Windows
 
 <hr>
 
-Step 9
+`**Step 9**`
 
 Link Sentinel to the LAW (log analytics workspace) created from the previous step
 
@@ -123,7 +123,7 @@ Link Sentinel to the LAW (log analytics workspace) created from the previous ste
 
 <hr>
 
-Step 10
+`**Step 10**`
 
 Go to `Content hub` to install windows security events, add connector, and create a data connection rule so that logs from the virtual machine can be sent to Sentinel
 
@@ -143,7 +143,7 @@ Go to `Content hub` to install windows security events, add connector, and creat
 
 <hr>
 
-Step 11
+`**Step 11**`
 
 Create new watchlist item using the geo location file
 
@@ -155,7 +155,7 @@ Create new watchlist item using the geo location file
 
 <hr>
 
-Step 12
+`**Step 12**`
 
 Run the following KQL query to generate all of the IP addresses of attackers on the VM and utilize the geo locations from the uploaded geo file
 
