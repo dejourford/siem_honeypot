@@ -37,9 +37,9 @@ This step is the creation of a virtual machine in Azure that is running Windows 
 
 <hr>
 
-## Step 2) Remove default Remote Desktop Rule from NSG (Network Security Group)
+## Step 2) Remove RDP (Remote Desktop Protocol) Rule
 
-This step is the removal of the default RDP rule that is created within the NSG upon virtual machine creation.
+This step is the removal of the default RDP rule that is created within the NSG (Network Security Group) upon virtual machine creation.
 
 
 <p align="center">
@@ -48,7 +48,7 @@ This step is the removal of the default RDP rule that is created within the NSG 
 
 <hr>
 
-## Step 3) Create new global rule that allows any type of connection to the virtual machine
+## Step 3) Create a New Global Rule
 
 This step is creating a global rule that allows any type of connection to the virtual machine and giving it higher priority (lower number value) than the other rules.
 
