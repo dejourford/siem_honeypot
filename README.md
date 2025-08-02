@@ -1,9 +1,8 @@
+# Microsoft Azure Honeypot Attacker Heatmap Lab
 
 <p align="center">
 <img src="/images/hero.png" alt="hero" width=600/>
 </p>
-
-# Microsoft Azure Honeypot Attacker Heatmap Lab
 
 ## Purpose
 
