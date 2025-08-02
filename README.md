@@ -6,19 +6,19 @@
 
 ## Technology Utilized
 
-    - Microsoft Azure Virtual Machine (Windows 10)
+    * Microsoft Azure Virtual Machine (Windows 10)
     
-    - Microsoft Defender
+    * Microsoft Defender
     
-    - Microsoft Sentinel
+    * Microsoft Sentinel
 
-    - Remote Desktop Protocol (RDP)
+    * Remote Desktop Protocol (RDP)
      
-    - KQL (Kusto Query Language)
+    * KQL (Kusto Query Language)
 
-    - MITRE ATT&CK Framework
+    * MITRE ATT&CK Framework
 
-    - Network Security Group (NSG)
+    * Network Security Group (NSG)
 
 <hr>
 
