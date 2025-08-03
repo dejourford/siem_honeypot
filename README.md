@@ -1,4 +1,4 @@
-# Microsoft Azure Honeypot Attacker Heatmap Lab
+# Cloud-Based Home SOC Lab with Microsoft Sentinel
 
 <p align="center">
 <img src="/images/hero.png" alt="hero" width=900/>
@@ -230,9 +230,14 @@ WindowsEvents | where EventID == 4625
 
 ## Discussion
 
+Test.
  
 ## MITRE ATT&CK Tactics Used
 
 `Test`
 
 ## Mitigation Plan
+
+-Test
+
+-Test
