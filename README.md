@@ -246,7 +246,11 @@ In this step, I created a new workbook and added a new query, json, to the workb
 
 ## Discussion
 
+After disabling the firewall and adding a NSG rule that allowed all types of traffic, attempted attacks started as soon as within 15 minutes. Most of the brute force attacks originated from the Netherlands (460k+). Most of the attackers tried only a few password/username combinations and some evidently used a script to try tens of thousands different username/password combinations. After 24 hours, the heatmap was lightly saturated but after 48 hours, there were a lot more instances of attacks from around the world.
 
+To mitigate this, I removed the RDP rule that allowed any access and enabled Windows Defender Firewall. Ideally, I would also increase the account lockout duration from 60 seconds to 15 minutes to further deter password spraying attempts. I could also enable an account lockout rule after say, 5 unsuccessful login attempts.
+
+After completion of this lab, I learned that attackers are relentless and your device can be attacked in SECONDS to MINUTES if left vulnerable. 
  
 ## MITRE ATT&CK Tactics Used
 
