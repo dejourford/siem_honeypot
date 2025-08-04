@@ -241,7 +241,7 @@ In this step, I created a new workbook and added a new query, json, to the workb
 **AFTER 48 HOURS**
 
 <p align="center">
-<img src="/images/create_machine.png" alt="create virtual machine" width=600/>
+<img src="/images/48hours.png" alt="after 48 hours" width=600/>
 </p>
 
 ## Discussion
