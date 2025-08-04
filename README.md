@@ -187,46 +187,62 @@ WindowsEvents | where EventID == 4625
 | summarize FailureCount = count() by IpAddress, latitude, longitude, cityname, countryname
 | project AttackerIP = IpAddress, latitude, longitude, city = cityname, country = countryname, friendly_location = strcat(cityname, " (", countryname, ")"), FailureCount;
 ```
+<hr>
+
+## Step 13) Create Workbook
+
+In this step, I created a new workbook and added a new query, json, to the workbook to generate the heat maps. These heatmaps display the relative areas where attacks on the honeypot originated from.
+
+`JSON`
+
+```powershell
+{
+	"type": 3,
+	"content": {
+	"version": "KqlItem/1.0",
+	"query": "let GeoIPDB_FULL = _GetWatchlist(\"geoip\");\nlet WindowsEvents = SecurityEvent;\nWindowsEvents | where EventID == 4625\n| order by TimeGenerated desc\n| evaluate ipv4_lookup(GeoIPDB_FULL, IpAddress, network)\n| summarize FailureCount = count() by IpAddress, latitude, longitude, cityname, countryname\n| project FailureCount, AttackerIp = IpAddress, latitude, longitude, city = cityname, country = countryname,\nfriendly_location = strcat(cityname, \" (\", countryname, \")\");",
+	"size": 3,
+	"timeContext": {
+		"durationMs": 2592000000
+	},
+	"queryType": 0,
+	"resourceType": "microsoft.operationalinsights/workspaces",
+	"visualization": "map",
+	"mapSettings": {
+		"locInfo": "LatLong",
+		"locInfoColumn": "countryname",
+		"latitude": "latitude",
+		"longitude": "longitude",
+		"sizeSettings": "FailureCount",
+		"sizeAggregation": "Sum",
+		"opacity": 0.8,
+		"labelSettings": "friendly_location",
+		"legendMetric": "FailureCount",
+		"legendAggregation": "Sum",
+		"itemColorSettings": {
+		"nodeColorField": "FailureCount",
+		"colorAggregation": "Sum",
+		"type": "heatmap",
+		"heatmapPalette": "greenRed"
+		}
+	}
+	},
+	"name": "query - 0"
+}
+```
+
+**AFTER 24 HOURS**
+
+<p align="center">
+<img src="/images/24hours.png" alt="after 24 hours" width=900/>
+</p>
 
 
+**AFTER 48 HOURS**
 
 <p align="center">
 <img src="/images/create_machine.png" alt="create virtual machine" width=600/>
 </p>
-
-
-<p align="center">
-<img src="/images/create_machine.png" alt="create virtual machine" width=600/>
-</p>
-
-
-
-<p align="center">
-<img src="/images/create_machine.png" alt="create virtual machine" width=600/>
-</p>
-
-
-<p align="center">
-<img src="/images/create_machine.png" alt="create virtual machine" width=600/>
-</p>
-
-<p align="center">
-<img src="/images/create_machine.png" alt="create virtual machine" width=600/>
-</p>
-
-<p align="center">
-<img src="/images/create_machine.png" alt="create virtual machine" width=600/>
-</p>
-
-<p align="center">
-<img src="/images/create_machine.png" alt="create virtual machine" width=600/>
-</p>
-
-
-
-
-
-
 
 ## Discussion
 
