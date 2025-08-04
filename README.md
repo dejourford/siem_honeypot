@@ -246,7 +246,7 @@ In this step, I created a new workbook and added a new query, json, to the workb
 
 ## Discussion
 
-Test.
+
  
 ## MITRE ATT&CK Tactics Used
 
@@ -254,6 +254,8 @@ Test.
 
 ## Mitigation Plan
 
--Test
+* Enable Windows Defender Firewall
 
--Test
+* Remove RDP Rule (use Bastion connnection instead)
+
+* Increase lockout duration policy from 60 seconds to 900 seconds to mitigate brute force attempts
