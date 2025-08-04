@@ -250,7 +250,11 @@ In this step, I created a new workbook and added a new query, json, to the workb
  
 ## MITRE ATT&CK Tactics Used
 
-`Test`
+`T1133 - External Remote Services --> Attackers attempt RDP (port 3389) to access the system`
+
+`T1110 - Brute Force --> Automated login attempts over RDP`
+
+`T11110.003 - Password Spraying --> Many Usernames, few common passwords`
 
 ## Mitigation Plan
 
